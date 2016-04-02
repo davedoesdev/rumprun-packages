@@ -1,0 +1,4 @@
+FROM davedoesdev/rumprun-base
+RUN git clone http://repo.rumpkernel.org/rumprun && \
+    cd rumprun && \
+    git submodule update --init

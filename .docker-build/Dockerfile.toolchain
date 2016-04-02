@@ -1,0 +1,7 @@
+FROM davedoesdev/rumprun-toolchain-base
+ARG tuple
+ARG platform
+RUN cd rumprun && ./build-rr.sh "$platform"
+ENV PATH "$PATH:/rumprun/rumprun/bin"
+ENV RUMPRUN_TOOLCHAIN_TUPLE "$tuple"
+ENTRYPOINT ["/rumprun-packages/.docker-build/build-package.sh"]
