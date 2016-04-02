@@ -4,7 +4,7 @@ node_modules
 /nodekick
 /socket.io-chess
 /Ghost-*
-/ghost_data.img
+/ghost_data.*
 /bootstrap.js
 /*.fs
 /hello-world.js

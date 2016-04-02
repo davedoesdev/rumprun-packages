@@ -3,6 +3,9 @@ dist: trusty
 language: generic
 script: ./.docker-build/build-package-in-docker.sh "$PACKAGE"
 
+services:
+  - docker
+
 env:
   - PACKAGE=erlang
   - PACKAGE=haproxy
