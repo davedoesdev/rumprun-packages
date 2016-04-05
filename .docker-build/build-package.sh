@@ -12,4 +12,4 @@ ln -sf ruby2.0 /usr/bin/ruby
 cd "$(dirname "$0")/.."
 echo "RUMPRUN_TOOLCHAIN_TUPLE=$RUMPRUN_TOOLCHAIN_TUPLE" > config.mk
 cd "$1"
-make -j2
+make -j2 $RUMPRUN_PACKAGE_TARGET
