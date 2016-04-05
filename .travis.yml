@@ -1,7 +1,7 @@
 sudo: required
 dist: trusty
 language: generic
-script: BUILD_TAG="$TRAVIS_TAG" ./.docker-build/build-package-in-docker.sh "$PACKAGE"
+script: ./.docker-build/build-package-in-docker.sh
 
 services:
   - docker
