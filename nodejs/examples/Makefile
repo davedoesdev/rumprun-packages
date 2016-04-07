@@ -3,6 +3,8 @@ include ../Makefile.inc
 EXPRESS_VERSION=4.13.3
 GHOST_VERSION=0.7.8
 
+PATH := "../$(BUILD_DIR)/deps/npm/bin:$(PATH)"
+
 .PHONY: run_express_hello_world
 run_express_hello_world: express-$(EXPRESS_VERSION).iso
 	rumprun kvm -M 256 -I 'nic,vioif,-net user,hostfwd=tcp::3000-:3000' -W nic,inet,dhcp -i -b express-$(EXPRESS_VERSION).iso,/express ../$(NODE_BIN).bin /express/examples/hello-world/index.js
