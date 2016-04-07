@@ -27,6 +27,13 @@ export GYP_DEFINES="OS=netbsd"
 NODE_OUT=$(BUILD_DIR)/out/Release/node
 
 all: $(NODE_BIN)
+ifdef BUILD_TAG
+ifeq ($(MAKELEVEL),0)
+all:
+	$(MAKE) NODE_VERSION=5.6.0 PKGSRC=nodejs
+	$(MAKE) -C examples ghost
+endif
+endif
 
 $(NODE_BIN): $(NODE_OUT)
 	cp $^ $@

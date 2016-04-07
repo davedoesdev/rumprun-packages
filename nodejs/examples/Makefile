@@ -61,6 +61,19 @@ ghost_data.img: | Ghost-$(GHOST_VERSION)
 	find Ghost-$(GHOST_VERSION)/content -mindepth 1 -type d -printf '$@:content/%P\0' | xargs -0 e2mkdir -O 0 -G 0
 	find Ghost-$(GHOST_VERSION)/content -type f -printf '%P\0' | xargs -0 -n 1 -I % e2cp -O 0 -G 0 "Ghost-$(GHOST_VERSION)/content/%" "$@:content/%"
 
+ghost-$(GHOST_VERSION).zip: | Ghost-$(GHOST_VERSION)
+	zip -r $@ $|
+
+ghost-$(GHOST_VERSION).js: zipload.sh ghost-$(GHOST_VERSION).zip
+	./zipload.sh "/Ghost-$(GHOST_VERSION)/index.js" < ghost-$(GHOST_VERSION).zip > $@
+
+.PHONY: ghost-link
+ghost-link: ghost-$(GHOST_VERSION).js
+	ln -sf examples/ghost-$(GHOST_VERSION).js ../rumpmain.js
+
+.PHONY: ghost
+ghost: ghost_data.img ghost-link inject_ghost
+
 .PHONY: clean
 clean:
 	rm -rf *.iso node_modules ursa/node_modules express-* Ghost-* ghost-* ghost_data.img bootstrap.js socket.io-chess nodekick *.fs hello-world.js
