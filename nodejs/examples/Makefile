@@ -4,7 +4,6 @@ EXPRESS_VERSION = 4.13.3
 GHOST_VERSION = 0.7.8
 
 NAD = "$(CURDIR)/node_modules/.bin/nad"
-NPM = "$(CURDIR)/../$(BUILD_DIR)/deps/npm/bin/npm"
 
 .PHONY: run_express_hello_world
 run_express_hello_world: express-$(EXPRESS_VERSION).iso
@@ -25,7 +24,7 @@ inject_ghost: | node_modules/nad Ghost-$(GHOST_VERSION)
 	NODE_PATH=../examples/Ghost-$(GHOST_VERSION)/node_modules/sqlite3/node_modules make -C ..
 
 node_modules/nad:
-	$(NPM) install 'https://github.com/davedoesdev/nad.git#fix-no-sources'
+	npm install 'https://github.com/davedoesdev/nad.git#fix-no-sources'
 
 bootstrap.js: zipload.js | ../dl/jszip.min.js
 	cat ../dl/jszip.min.js zipload.js > $@
@@ -35,7 +34,7 @@ bootstrap.js: zipload.js | ../dl/jszip.min.js
 
 express-$(EXPRESS_VERSION): | ../dl/express-$(EXPRESS_VERSION).tar.gz
 	tar -zxf ../dl/express-$(EXPRESS_VERSION).tar.gz
-	(cd $@ && $(NPM) install --production)
+	(cd $@ && npm install --production)
 
 ../dl/express-$(EXPRESS_VERSION).tar.gz:
 	curl -L -o $@ https://github.com/strongloop/express/archive/$(EXPRESS_VERSION).tar.gz
@@ -44,13 +43,13 @@ express-$(EXPRESS_VERSION).iso: express-$(EXPRESS_VERSION)
 	genisoimage -l -r -o $@ express-$(EXPRESS_VERSION)
 
 ursa/node_modules/ursa:
-	(cd ursa && $(NPM) install --production)
+	(cd ursa && npm install --production)
 
 ursa.iso: ursa/test.js | ursa/node_modules/ursa
 	genisoimage -l -r -o $@ ursa
 
 Ghost-$(GHOST_VERSION): | ../dl/ghost-$(GHOST_VERSION).zip
-	(mkdir $@ && cd $@ && unzip ../../dl/ghost-$(GHOST_VERSION).zip && $(NPM) install --production)
+	(mkdir $@ && cd $@ && unzip ../../dl/ghost-$(GHOST_VERSION).zip && npm install --production)
 	
 ../dl/ghost-$(GHOST_VERSION).zip:
 	curl -L -o $@ https://ghost.org/zip/ghost-$(GHOST_VERSION).zip
