@@ -49,7 +49,7 @@ ursa.iso: ursa/test.js | ursa/node_modules/ursa
 	genisoimage -l -r -o $@ ursa
 
 Ghost-$(GHOST_VERSION): | ../dl/ghost-$(GHOST_VERSION).zip
-	(mkdir $@ && cd $@ && unzip ../../dl/ghost-$(GHOST_VERSION).zip && npm install --production)
+	(mkdir $@ && cd $@ && unzip -q ../../dl/ghost-$(GHOST_VERSION).zip && npm install --production)
 	
 ../dl/ghost-$(GHOST_VERSION).zip:
 	curl -L -o $@ https://ghost.org/zip/ghost-$(GHOST_VERSION).zip
@@ -63,7 +63,7 @@ ghost_data.img: | Ghost-$(GHOST_VERSION)
 	find Ghost-$(GHOST_VERSION)/content -type f -printf '%P\0' | xargs -0 -n 1 -I % e2cp -O 0 -G 0 "Ghost-$(GHOST_VERSION)/content/%" "$@:content/%"
 
 ghost-$(GHOST_VERSION).zip: | Ghost-$(GHOST_VERSION)
-	zip -r $@ $|
+	zip -qr $@ $|
 
 ghost-$(GHOST_VERSION).js: zipload.sh ghost-$(GHOST_VERSION).zip
 	./zipload.sh "/Ghost-$(GHOST_VERSION)/index.js" < ghost-$(GHOST_VERSION).zip > $@
