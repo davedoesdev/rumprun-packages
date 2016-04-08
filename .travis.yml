@@ -1,7 +1,7 @@
 sudo: required
 dist: trusty
 language: generic
-script: ./.docker-build/build-package-in-docker.sh -e "BUILD_TAG=$TRAVIS_TAG" davedoesdev/rumprun-toolchain-x86_64-rumprun-netbsd-hw
+script: ./.docker-build/build-package-in-docker.sh -e "BUILD_TAG=$TRAVIS_TAG" davedoesdev/rumprun-pkgbuild-x86_64-rumprun-netbsd-hw
 
 services:
   - docker
