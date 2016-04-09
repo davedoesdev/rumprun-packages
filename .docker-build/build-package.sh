@@ -1,5 +1,4 @@
 #!/bin/bash
-free -m
 set -e
 if [ -z "$1" ]; then
   echo "No package specified"
