@@ -26,11 +26,11 @@ export GYP_DEFINES="OS=netbsd"
 
 NODE_OUT=$(BUILD_DIR)/out/Release/node
 
+NODE_LATEST_VERSION=5.6.0
 all: $(NODE_BIN)
 ifdef BUILD_TAG
 	rumprun-bake "$(RUMPRUN_PUBLISH_CONFIG)" "$(NODE_BIN).bin" "$(NODE_BIN)"
 ifeq ($(MAKELEVEL),0)
-NODE_LATEST_VERSION=5.6.0
 	$(MAKE) NODE_VERSION=$(NODE_LATEST_VERSION) PKGSRC=nodejs
 	$(MAKE) -C examples ghost
 	echo PUBLISH
