@@ -74,6 +74,11 @@ ghost-link: ghost-$(GHOST_VERSION).js
 
 .PHONY: ghost
 ghost: ghost_data.img ghost-link inject_ghost
+ifdef BUILD_TAG
+ghost:
+	echo PUBLISH
+	ls -l "../$(BUILD_DIR)/out/Release/node-ghost-$(GHOST_VERSION).bin"
+endif
 
 .PHONY: clean
 clean:
