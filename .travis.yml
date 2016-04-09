@@ -21,7 +21,7 @@ env:
   - PACKAGE=nanomsg
   - PACKAGE=nginx
   - PACKAGE=ngircd
-  - PACKAGE=nodejs
+  - PACKAGE=nodejs SWAP_GB=4
 # broken: issue #92
 #  - PACKAGE=openmp
   - PACKAGE=pcre
