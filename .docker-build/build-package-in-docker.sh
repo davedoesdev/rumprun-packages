@@ -1,8 +1,8 @@
 #!/bin/bash
 if [ -n "$SWAP_GB" ]; then
-  fallocate -l "${SWAP_GB}G" /swapfile
-  mkswap /swapfile
-  swapon /swapfile
+  fallocate -l "${SWAP_GB}G" swapfile
+  mkswap swapfile
+  sudo swapon swapfile
   free -m
 fi
 exec docker run --rm=true \
