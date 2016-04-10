@@ -35,7 +35,7 @@ ifeq ($(MAKELEVEL),0)
 	$(MAKE) -C examples ghost
 	echo PUBLISH
 	ls -l "$(NODE_BIN).bin"
-	ls -l "build-$(NODE_LATEST_VERSION)/out/Release/$(NODE_BIN).bin"
+	ls -l "build-$(NODE_LATEST_VERSION)/out/Release/node-default.bin"
 endif
 endif
 
