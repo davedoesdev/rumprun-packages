@@ -33,9 +33,9 @@ ifdef BUILD_TAG
 ifeq ($(MAKELEVEL),0)
 	$(MAKE) NODE_VERSION=$(NODE_LATEST_VERSION) PKGSRC=nodejs
 	$(MAKE) -C examples ghost
-	echo PUBLISH
-	ls -l "$(NODE_BIN).bin"
-	ls -l "build-$(NODE_LATEST_VERSION)/out/Release/node-default.bin"
+	../.publish/push.sh node $(NODE_VERSION) "$(NODE_BIN).bin"
+	../.publish/push.sh node $(NODE_LATEST_VERSION) "build-$(NODE_LATEST_VERSION)/out/Release/node-default.bin"
+	../.publish/commit.sh node ghost
 endif
 endif
 
