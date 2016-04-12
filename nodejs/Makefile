@@ -35,7 +35,6 @@ ifeq ($(MAKELEVEL),0)
 	$(MAKE) -C examples ghost
 	../.publish/push.sh node $(NODE_VERSION) "$(NODE_BIN).bin"
 	../.publish/push.sh node $(NODE_LATEST_VERSION) "build-$(NODE_LATEST_VERSION)/out/Release/node-default.bin"
-	../.publish/commit.sh node ghost
 endif
 endif
 
