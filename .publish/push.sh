@@ -1,5 +1,5 @@
 #!/bin/bash
 # usage: push.sh <repo-name> <version> <file>
-export DTUF_REPOSITORIES_ROOT="$(dirname "$0")/dtuf_repos"
-echo "$DTUF_REPOSITORIES_ROOT"
-echo dtuf push-target "teksilo/$1" "$2-$RUMPRUN_TOOLCHAIN_TUPLE-$RUMPRUN_PUBLISH_CONFIG" "$3"
+publish_dir="$(dirname "$0")/publish/$1"
+mkdir -p "$publish_dir"
+cp "$3" "$publish_dir/$2-$RUMPRUN_TOOLCHAIN_TUPLE-$RUMPRUN_PUBLISH_CONFIG"
