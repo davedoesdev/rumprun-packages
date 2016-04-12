@@ -57,7 +57,7 @@ deploy:
   api_key:
     secure: gA4x3pyspSnbPRFSYyLcPOEH8gp70/kfgue6065k0zLwzfUPusuouVB5o4UXVWe601OXOeEEejmln7oTzSJME8tqwHXWpbIsAlo4qvNtQnccq6l+SXmwJH0n92EUiu2n9EMds7bhlK+Pogv9e41YvkrkBlyt/JWLppM9YPxOIs/jYw3C58Bu3slBfspq0uoYswr8tj4zv20P5r6Z70ApmOsavuHXPLEsdMl4/XTYX4+aLUL//seGQ1Ul43TncVk17QvhR/jGxCpDIj1BRnKTyAu9wE4RHUJ4rdF5hHy7JlazqWjArD8i7dz3A4rgIojoEYSjaJ+e/fgnSzx0TUgvnR6kHJW047qbt59hfHMj57kxrrin+mYsZqG03Bf991ldt0v9D9gLnfxzTvVRJ8CSVz/vzgksWNNucyfDKS1gchrmn5oboq52tFsNZR5OGDySDJMcVlWYvOnzb9mn2PJyrwflA47iII9k+0vReE6lVXuXMq4mC6t/Nff8U2s8t3Sm/IoFb3Jej9Pf2k0AWPirNShd9qYmHnJ3Ps/abNAXEjeOvoGXJhc0FRT8HgGwaQv+Mg0EwmBW9/qf3iLN6jXr7AsmGVbGZAO+0jNeYiproEoPue7WNWPYRFbC6nBUHNe2Ic26Ek78t9WVggOqeedLhTlU2tjrdkMXfGrBM4EiYqc=
   file_glob: true
-  file: ./.publish/publish/*.tar.xz
+  file: ./.publish/*.tar.xz
   skip_cleanup: true
   on:
     repo: davedoesdev/rumprun-packages

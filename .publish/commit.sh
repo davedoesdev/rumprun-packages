@@ -5,6 +5,6 @@ mkdir -p "$publish_dir"
 cd "$publish_dir"
 for d in *; do
   if [ -d "$d" ]; then
-    tar -Jcf "$d.tar.xz" "$d"
+    tar -Jcf "../$d.tar.xz" "$d"
   fi
 done
