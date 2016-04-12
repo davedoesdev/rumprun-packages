@@ -4,5 +4,7 @@ publish_dir="$(dirname "$0")/publish"
 mkdir -p "$publish_dir"
 cd "$publish_dir"
 for d in *; do
-  tar -Jcf "$d.tar.xz" "$d"
+  if [ -d "$d" ]; then
+    tar -Jcf "$d.tar.xz" "$d"
+  fi
 done
