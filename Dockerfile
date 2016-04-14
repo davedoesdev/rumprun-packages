@@ -8,7 +8,7 @@ RUN apt-get update -y && \
     repo_url="$(git config --get remote.origin.url)" && \
     repo_url="${repo_url%.git}" && \
     mkdir rumprun-package-binaries && \
-    curl "$repo_url/releases/tag/$release_name" | \
+    curl -L "$repo_url/releases/tag/$release_name" | \
         grep -o '[^/]*\.tar\.xz"' | tr -d '"' | tr '\n' '\0' | \
-        xargs -0 -n 1 -I % sh -c "curl $repo_url/releases/download/$release_name/% | tar -C rumprun-package-binaries -Jx" && \
+        xargs -0 -n 1 -I % sh -c "curl -L $repo_url/releases/download/$release_name/% | tar -C rumprun-package-binaries -Jx" && \
     rm -rf .git
