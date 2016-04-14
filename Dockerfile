@@ -3,6 +3,11 @@ COPY .git /.git
 RUN apt-get update -y && \
     apt-get install -y git curl && \
     release_name="$(git describe)" && \
-    git config --get remote.origin.url && \
-    curl "https://github.com/davedoesdev/rumprun-packages/releases/tag/$release_name" | grep -o '[^/]*\.tar\.xz"' | tr -d '"'
+    release_name=publish-0.0.24 && \
+    echo TODO: REMOVE THE ABOVE LINE && \
+    repo_url="$(git config --get remote.origin.url)" && \
+    repo_url="${repo_url%.git}" && \
+    curl "$repo_url/releases/tag/$release_name" | \
+        grep -o '[^/]*\.tar\.xz"' | tr -d '"' | tr '\n' '\0' | \
+        xargs -0 -n 1 -I % sh -c 'echo %' && \
     rm -rf .git
