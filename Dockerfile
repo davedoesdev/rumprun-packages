@@ -1,4 +1,4 @@
-FROM davedoesdev/docker-dtuf
+FROM ubuntu
 COPY .git /.git
 RUN apt-get update -y && \
     apt-get install -y git curl && \
