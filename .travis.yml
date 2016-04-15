@@ -65,13 +65,15 @@ deploy:
     all_branches: true
 
 after_deploy:
-  - python .docker-build/travis_after_all.py https://api.travis-ci.com
-  - export $(cat .to_export_back)
+  - python .docker-build/travis_after_all.py
   - |
-      if [ "$BUILD_LEADER" = "YES" ]; then
-        if [ "$BUILD_AGGREGATE_STATUS" = "others_succeeded" ]; then
-          echo "All jobs succeeded! PUBLISHING..."
-        else
-          echo "Some jobs failed"
+      if [ -f .to_export_back ]; then
+        export $(cat .to_export_back)
+        if [ "$BUILD_LEADER" = "YES" ]; then
+          if [ "$BUILD_AGGREGATE_STATUS" = "others_succeeded" ]; then
+            echo "All jobs succeeded! PUBLISHING..."
+          else
+            echo "Some jobs failed"
+          fi
         fi
       fi
