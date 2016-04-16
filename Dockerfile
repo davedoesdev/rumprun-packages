@@ -1,7 +1,7 @@
 FROM ubuntu
 COPY .git /.git
 RUN apt-get update -y && \
-    apt-get install -y git curl && \
+    apt-get install -y git curl xz-utils && \
     release_name="$(git describe)" && \
     repo_url="$(git config --get remote.origin.url)" && \
     repo_url="${repo_url%.git}" && \
