@@ -1,5 +1,12 @@
 #!/bin/bash
 # usage: push.sh <repo-name> <version> <file>
-publish_dir="$(dirname "$0")/publish/$1"
-mkdir -p "$publish_dir"
-cp "$3" "$publish_dir/$2-$RUMPRUN_TOOLCHAIN_TUPLE-$RUMPRUN_PUBLISH_CONFIG"
+#        push.sh <repo-name>/<dest> <file>
+dest="$(dirname "$0")/publish/$1"
+if [ $# -eq 3 ]; then
+  dest+="/$2-$RUMPRUN_TOOLCHAIN_TUPLE-$RUMPRUN_PUBLISH_CONFIG"
+  file="$3"
+else
+  file="$2"
+fi
+mkdir -p "$(dirname "$dest")"
+cp "$file" "$dest"
