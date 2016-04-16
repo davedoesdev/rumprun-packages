@@ -72,6 +72,7 @@ after_deploy:
         if [ "$BUILD_LEADER" = "YES" ]; then
           if [ "$BUILD_AGGREGATE_STATUS" = "others_succeeded" ]; then
             echo "All jobs succeeded! PUBLISHING..."
+            curl -H "Content-Type: application/json" --data '{"source_type": "Tag", "source_name": "'"$TRAVIS_TAG"'"}' -X POST "https://registry.hub.docker.com/u/davedoesdev/rumprun-packages/trigger/$DOCKER_HUB_TRIGGER_TOKEN/"
           else
             echo "Some jobs failed"
           fi
