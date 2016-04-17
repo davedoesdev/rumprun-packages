@@ -3,6 +3,7 @@ import sys
 import json
 import time
 import logging
+import yaml
 
 try:
     from functools import reduce
@@ -22,6 +23,7 @@ TRAVIS_JOB_NUMBER = 'TRAVIS_JOB_NUMBER'
 TRAVIS_BUILD_ID = 'TRAVIS_BUILD_ID'
 POLLING_INTERVAL = 'LEADER_POLLING_INTERVAL'
 GITHUB_TOKEN = 'GITHUB_TOKEN'
+TRAVIS_BUILD_DIR = 'TRAVIS_BUILD_DIR'
 
 
 # Travis API entry point, there are at least https://api.travis-ci.com and https://api.travis-ci.org
@@ -31,8 +33,16 @@ build_id = os.getenv(TRAVIS_BUILD_ID)
 polling_interval = int(os.getenv(POLLING_INTERVAL, '5'))
 gh_token = os.getenv(GITHUB_TOKEN)
 
-# assume, first job is the leader
-is_leader = lambda job_number: job_number.endswith('.1')
+# last job is the leader because it's started last:
+# - if it's the longest job then it won't timeout
+# - if it's not the longest job then the longest job will have already been
+#   started so will only timeout if the longest job times out
+# read .travis.yml to find the number of jobs
+
+with open(os.path.join(os.getenv(TRAVIS_BUILD_DIR), '.travis.yml'), 'r') as f:
+    leader_suffix = ".%d" % len(yaml.load(f)['env'])
+
+is_leader = lambda job_number: job_number.endswith(leader_suffix)
 
 job_number = os.getenv(TRAVIS_JOB_NUMBER)
 
