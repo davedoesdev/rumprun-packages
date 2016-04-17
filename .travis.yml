@@ -65,7 +65,6 @@ deploy:
     all_branches: true
 
 after_deploy:
-  - sudo apt-get install -y python-yaml
   - python .docker-build/travis_after_all.py
   - |
       if [ -f .to_export_back ]; then
