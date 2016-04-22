@@ -1,5 +1,10 @@
-Rumprun-packages [![Build Status](https://travis-ci.org/rumpkernel/rumprun-packages.svg?branch=master)](https://travis-ci.org/rumpkernel/rumprun-packages)
+Rumprun-packages [![Build Status](https://travis-ci.org/davedoesdev/rumprun-packages.svg?branch=master)](https://travis-ci.org/davedoesdev/rumprun-packages)
 ================
+
+**Note**: This fork adds Docker-based builds, deploys binaries from Travis CI to
+Github Releases and publishes binaries using [The Update Framework](https://theupdateframework.github.io/). See [here](build.md) for more details.
+
+---
 
 Rumprun-packages is a work-in-progress repository for software running on the
 [Rumprun unikernel](http://repo.rumpkernel.org/rumprun).
