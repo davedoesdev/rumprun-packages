@@ -1,7 +1,13 @@
 sudo: required
 dist: trusty
 language: generic
-script: ./.docker-build/build-package-in-docker.sh -e "BUILD_TAG=$TRAVIS_TAG" -e "RUMPRUN_PUBLISH_CONFIG=hw_generic" -e npm_config_unsafe_perm=true davedoesdev/rumprun-pkgbuild-x86_64-rumprun-netbsd-hw
+script: ./.docker-build/build-package-in-docker.sh
+  -e "BUILD_TAG=$TRAVIS_TAG"
+  -e "RUMPRUN_PUBLISH_CONFIG=hw_generic"
+  -e npm_config_unsafe_perm=true
+  -e NODE_VERSION
+  -e PKGSRC
+  davedoesdev/rumprun-pkgbuild-x86_64-rumprun-netbsd-hw
 
 services:
   - docker
@@ -22,6 +28,7 @@ env:
   - PACKAGE=nginx
   - PACKAGE=ngircd
   - PACKAGE=nodejs SWAP_GB=4
+  - PACKAGE=nodejs SWAP_GB=4 NODE_VERSION=5.6.0 PKGSRC=nodejs
 # broken: issue #92
 #  - PACKAGE=openmp
   - PACKAGE=pcre

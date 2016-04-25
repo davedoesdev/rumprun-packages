@@ -75,8 +75,8 @@ ghost-link: ghost-$(GHOST_VERSION).js
 .PHONY: ghost
 ghost: ghost_data.img ghost-link inject_ghost
 ifdef BUILD_TAG
-	../../.publish/push.sh ghost $(GHOST_VERSION) "../$(BUILD_DIR)/out/Release/node-ghost-$(GHOST_VERSION).bin"
-	../../.publish/push.sh ghost/data.img ghost_data.img
+	../../.publish/push.sh ghost-$(GHOST_VERSION)/ghost $(GHOST_VERSION) "../$(BUILD_DIR)/out/Release/node-ghost-$(GHOST_VERSION).bin"
+	../../.publish/push.sh ghost-$(GHOST_VERSION)/ghost/data.img ghost_data.img
 endif
 
 .PHONY: clean
