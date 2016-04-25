@@ -35,6 +35,7 @@ ifeq ($(NODE_VERSION),$(NODE_LTS_VERSION))
 	$(MAKE) -C examples ghost
 endif
 endif
+endif
 
 $(NODE_BIN): $(NODE_OUT)
 	cp $^ $@
