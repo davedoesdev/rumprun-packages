@@ -6,6 +6,6 @@ cd "$publish_dir"
 for a in *; do
   if [ -d "$a" ]; then
     echo "$a"
-    tar -Jxf "../$a.tar.xz" -C "$a" .
+    tar -Jcf "../$a.tar.xz" -C "$a" .
   fi
 done
